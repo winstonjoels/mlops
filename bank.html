@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<title>BankLoan Prediction</title>
+		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+    </head>
+
+    <body>
+        <div class="login">
+            <h1>Bank Loan Prediction</h1>
+            <!-- Form to enter new data for predictions  -->
+            <form action="{{ url_for('predict', name="mush")}}" method="POST">
+                <div>
+                    <label>Age</label>
+                    <input type="age" name="age" required/>
+                </div>
+                <select name="job" required="required">
+                    <option>Job</option>
+                    <option value="0">admin.</option>
+                    <option value="1">blue-collar</option>
+                    <option value="2">entrepreneur</option>
+                    <option value="3">housemaid</option>
+                    <option value="4">management</option>
+                    <option value="5">retired</option>
+                    <option value="6">self-employed</option>
+                    <option value="7">services</option>
+                    <option value="8">student</option>
+                    <option value="9">technician</option>
+                    <option value="10">unemployed</option>
+                    <option value="11">unknown</option>
+                </select><br>
+                <select name="marital" required="required">
+                    <option>Marital Status</option>
+                    <option value="0">divorced</option>
+                    <option value="1">married</option>
+                    <option value="2">single</option>
+                    <option value="3">unknown</option>
+                </select><br>
+                <select name="education" required="required">
+                    <option>Educational Details</option>
+                    <option value="0">basic.4y</option>
+                    <option value="1">basic.6y</option>
+                    <option value="2">basic.9y</option>
+                    <option value="3">high.school</option>
+                    <option value="4">illeterate</option>
+                    <option value="5">professional.course</option>
+                    <option value="6">university.degree</option>
+                    <option value="7">unknown</option>
+                </select><br>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form><br>
+			<h3>{{pred}}</h3>        
+
+        </div>
+    </body>
+</html>
