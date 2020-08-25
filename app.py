@@ -34,12 +34,12 @@ def predict(name):
     model = load_model(name1)
     data_unseen = pd.DataFrame([final], columns = cols)
     prediction = model.predict(data_unseen)
-    if int(prediction)==1.0:
-        pred="Poisonous"
+    if int(prediction)==1:
+        pred="Eligible for Loan"
     else:
-        pred="Edible"
+        pred="Not eligible for Loan"
     file = name+".html"
-    return render_template(file,pred='The mushroom is {}'.format(pred))
+    return render_template(file,pred='{}'.format(pred))
 
 if __name__ == '__main__':
     app.run()
