@@ -34,7 +34,10 @@ def predict(name):
     model = load_model(name1)
     data_unseen = pd.DataFrame([final], columns = cols)
     prediction = model.predict(data_unseen)
-    pred = "it works"
+    if int(prediction)==1:
+        pred = "Eligible for loan"
+    else:
+        pred = "not eligible for loan"
     file = name+".html"
     return render_template(file,pred='{}'.format(pred))
 
