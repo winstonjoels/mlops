@@ -14,7 +14,10 @@
 		<div class="login">
 			<h1>Machine Learning Models</h1>
 			<form action="{{ url_for('model', name="bank")}}" method="POST">
-				<button type="submit" class="btn btn-primary btn-block btn-large">BankLoan</button>
+				<button type="submit" class="btn btn-primary btn-block btn-large">Bank Loan</button>
+			</form>
+			<form action="{{ url_for('model', name="heart")}}" method="POST">
+				<button type="submit" class="btn btn-primary btn-block btn-large">Heart Disease</button>
 			</form>
 			<form action="{{ url_for('eval')}}" method="POST">
 				<button type="submit" class="btn btn-primary btn-block btn-large">Store Actual Data</button>
