@@ -11,6 +11,7 @@ import pickle
 import numpy as np
 import random
 import csv
+from sklearn.metrics import accuracy_score
 
 def randN():
     N=7
@@ -21,7 +22,7 @@ def randN():
 
 app = Flask(__name__)
 
-global model, cols, id
+global model, cols, id, predict
 
 @app.route('/')
 def home():
@@ -34,13 +35,33 @@ def eval():
     rows = [] 
     with open(filename, 'r') as csvfile: 
         csvreader = csv.reader(csvfile) 
-        fields = next(csvreader) 
         for row in csvreader: 
             rows.append(row) 
     df = pd.DataFrame(rows, columns = ['ID', 'Name', 'Predicted', 'Actual'])
-    return render_template("eval.html", tables=df, titles=df.columns.values)
+    df = df.loc[df['Actual'] == '?']
+    return render_template("eval.html", column_names=df.columns.values, row_data=list(df.values.tolist()), link_column="Actual", zip=zip)
 
-@app.route('/model/<name>',methods=['POST'])
+@app.route('/after_store',methods=['POST'])
+def after_eval():
+    columns1 = ['ID', 'Name', 'Predicted', 'Actual']
+    int_features = [x for x in request.form.values()]
+    final = np.array(int_features)
+    data_unseen = pd.DataFrame([final], columns = columns1)
+    
+    output = []
+    filename = "data/Details.csv"
+    with open(filename, 'r') as csvfile: 
+        csvreader = csv.reader(csvfile) 
+        for line in csvreader:
+            if str(data_unseen['ID'][0]) == line[0]:
+                line[3] = str(data_unseen['Actual'][0])
+            output.append(line)
+        list2 = ['ID','Name', 'Predicted', 'Actual']
+        df = pd.DataFrame(output, columns=list2)
+        df.to_csv('data/Details.csv', mode='w', header=False, index=False)
+    return eval()
+
+@app.route('/model/<name>',methods=['GET','POST'])
 def model(name):
     global model, cols, id
     id = randN()
@@ -72,6 +93,31 @@ def predict(name):
     
     file = name+".html"
     return render_template(file,pred='{}'.format(pred))
+
+@app.route('/model_eval',methods=['POST'])
+def model_eval():
+    filename = "data/Details.csv"
+    name = ['infy_bank', 'mush']
+    rows = []
+    accuracy = []
+    with open(filename, 'r') as csvfile: 
+        csvreader = csv.reader(csvfile) 
+        for row in csvreader: 
+            rows.append(row)
+    
+    df = np.array(rows)
+    df = pd.DataFrame(df, columns = ['ID', 'Name', 'Predicted', 'Actual'])
+    acc = "Not_enough_data"
+    accuracy = {}
+    for n in name:
+        df1 = df.loc[df['Name'] == n].loc[df['Actual'] != '?']
+        y_true = df1['Actual'].to_list()
+        y_pred = df1['Predicted'].to_list()
+        if len(y_true)>=20 and len(y_pred)>=20:
+            acc = str(accuracy_score(y_true, y_pred)*100)
+        accuracy[n] = acc
+        
+    return render_template("model_eval.html", accuracy = accuracy, name = name)
 
 if __name__ == '__main__':
     app.run()
