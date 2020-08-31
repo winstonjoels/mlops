@@ -65,7 +65,7 @@ def after_eval():
 def model(name):
     global model, cols, id
     id = randN()
-    if(name=="bank"):
+    if name=="bank":
         cols = ['age','job','marital','education']
     else:
         cols = ['age','anaemia','creatinine_phosphokinase','diabetes','ejection_fraction','high_blood_pressure','platelets','serum_creatinine','serum_sodium','sex','smoking']
