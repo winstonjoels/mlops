@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-		<title>BankLoan Prediction</title>
+		<title>Healthcare</title>
 		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
@@ -13,9 +13,9 @@
     <body>
         <div class="login">
             <h1>Death Rate Prediction: {{id}}</h1>
-            <form action="{{ url_for('model', name="bank")}}">
-		        <button type="submit" class="btn btn-primary btn-block btn-large">New Prediction</button>
-	        </form><br>
+            <form action="{{ url_for('model', name="heart")}}">
+		<button type="submit" class="btn btn-primary btn-block btn-large">New Prediction</button>
+	    </form><br>
             <!-- Form to enter new data for predictions  -->
             <form action="{{ url_for('predict', name="heart")}}" method="POST">
                 <div>
