@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Model Evaluation</title>
+		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<link type='text/css' rel='stylesheet' href='{{ url_for('static', filename='./style.css') }}'>
+	</head>
+
+	<body>
+		<div class="login">
+			<h1>Model Evaluation</h1>
+			<table>
+			<tr>
+			{% for n in name %}
+				<th>{{n}}</th><br>
+			{% endfor %}
+			</tr>
+			{% for n in name %}
+				<td><input name={{ n }} value={{ accuracy[n] }} readonly/></td>
+			{% endfor %}
+			</tr>
+		</div>
+		<form action="{{ url_for('home')}}">
+			<button type="submit" class="btn btn-primary btn-block btn-large">Home</button>
+		</form><br>
+	</body>
+</html>
