@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html>
      <head>
-        <title>Data Evaluation</title>
+        <title>Actual Data Storage</title>
         <meta charset="UTF-8">
 	<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<link type='text/css' rel='stylesheet' href='{{ url_for('static', filename='./style.css') }}'>
      </head>
      <body>
-          <div class="login">
-                <h1>Data Evaluation</h1>
-		<table>
-<!--                		{% for table in tables %} -->
-			<tr>
-        			<th>{{ tables }}</th>
-			</tr>
-<!--                		{% endfor %} -->
-		  </table>
-          </div>
+	<div class="login">
+	<h1>Actual Data Storage</h1>
+	<!-- Form to enter new data for predictions  -->
+
+        <table>
+		<tr>
+        	{% for col in column_names %}
+        		<th>{{col}}</th>
+        	{% endfor %}
+    		</tr>
+    		{% for row in row_data %}
+		<form action="{{ url_for('after_eval')}}" method="POST">
+    		<tr>
+        	{% for col, row_ in zip(column_names, row) %}
+        		{% if col == link_column %}
+        			<td>
+					<input name={{ col }} value={{ row_ }} />
+            			</td>
+				<td>
+					<button type='submit' class='btn btn-primary btn-block btn-large'>Save</button>
+				</td>
+        		{% else %}
+        		<td><input name={{ col }} value={{ row_ }} readonly/></td>
+        		{% endif %}
+        	{% endfor %}
+    		</tr>
+		</form>
+    		{% endfor %}
+	</table>
+	<form action="{{ url_for('home')}}">
+		<button type="submit" class="btn btn-primary btn-block btn-large">Home</button>
+	</form><br>
+	</div>
      </body>
 </html>
