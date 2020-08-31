@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<title>BankLoan Prediction</title>
+		<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
+    </head>
+
+    <body>
+        <div class="login">
+            <h1>Death Rate Prediction: {{id}}</h1>
+            <form action="{{ url_for('model', name="bank")}}">
+		        <button type="submit" class="btn btn-primary btn-block btn-large">New Prediction</button>
+	        </form><br>
+            <!-- Form to enter new data for predictions  -->
+            <form action="{{ url_for('predict', name="heart")}}" method="POST">
+                <div>
+                    <label>Age</label>
+                    <input type="text" name="age" required="required">
+                </div>
+                <div>
+                    <label>Anaemia</label>
+                    <select name="anaemia" required="required">
+                        <option>select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label>Creatinine Phosphokinase</label>
+                    <input type="text" name="creatinine_phosphokinase" required="required">
+                </div>
+                <div>
+                    <label>Diabetes</label>
+                    <select name="diabetes" required="required">
+                        <option>select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label>Ejection Fraction</label>
+                    <input type="text" name="ejection_fraction" required="required">
+                </div>
+                <div>
+                    <label>High Blood Pressure</label>
+                    <select name="high_blood_pressure" required="required">
+                        <option>select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label>Platelets</label>
+                    <input type="text" name="platelets" required="required">
+                </div>
+                <div>
+                    <label>Serum Creatinine</label>
+                    <input type="text" name="serum_creatinine" required="required">
+                </div>
+                <div>
+                    <label>Serum Sodium</label>
+                    <input type="text" name="serum_sodium" required="required">
+                </div>
+                <div>
+                    <label>Gender</label>
+                    <select name="sex" required="required">
+                        <option>select</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select><br>
+                </div>
+                <div>
+                    <label>Smoking</label>
+                    <select name="smoking" required="required">
+                        <option>select</option>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select><br>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+            </form><br>
+            <h3>{{pred}}</h3>
+
+        </div>
+    </body>
+</html>
