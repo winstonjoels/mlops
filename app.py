@@ -106,7 +106,7 @@ def predict(name):
 @app.route('/model_eval',methods=['POST'])
 def model_eval():
     filename = "data/Details.csv"
-    name = ['bank']
+    name = ['bank','heart']
     rows = []
     accuracy = []
     with open(filename, 'r') as csvfile: 
