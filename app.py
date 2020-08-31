@@ -65,7 +65,10 @@ def after_eval():
 def model(name):
     global model, cols, id
     id = randN()
-    cols = ['age','job','marital','education']
+    if(name=="bank"):
+        cols = ['age','job','marital','education']
+    else:
+        cols = ['age','anaemia','creatinine_phosphokinase','diabetes','ejection_fraction','high_blood_pressure','platelets','serum_creatinine','serum_sodium','sex','smoking']
     file = name+".html"
     return render_template(file)
 
@@ -78,10 +81,16 @@ def predict(name):
     model = load_model(name1)
     data_unseen = pd.DataFrame([final], columns = cols)
     prediction = model.predict(data_unseen)
-    if int(prediction)==1:
-        pred="Eligible for loan"
+    if name=="bank":
+        if int(prediction)==1:
+            pred="Eligible for loan"
+        else:
+            pred="Not eligible for loan"
     else:
-        pred="Not eligible for loan"
+        if int(prediction)==1:
+            pred="critical condition"
+        else:
+            pred="normal condition"
     
     actual = '?'
     list = [id, name, int(prediction), actual]
