@@ -18,10 +18,8 @@
 	    </form><br>
             <!-- Form to enter new data for predictions  -->
             <form action="{{ url_for('predict', name="heart")}}" method="POST">
-                <div>
-                    <label>Age</label>
-                    <input type="text" name="age" required="required">
-                </div>
+                Age: <input type="text" name="age" required="required">
+		<br>
                 <div>
                     <label>Anaemia</label>
                     <select name="anaemia" required="required">
