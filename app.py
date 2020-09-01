@@ -75,6 +75,7 @@ def model(name):
 @app.route('/predict/<name>',methods=['POST'])
 def predict(name):
     global model, cols
+    id = randN()
     int_features = [x for x in request.form.values()]
     final = np.array(int_features)
     name1 = name+"_training_pipeline"
