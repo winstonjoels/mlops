@@ -13,7 +13,7 @@
     	<body>
         	<div class="login">
             		<h1>Bank Loan Prediction: {{id}}</h1>
-            		<form action="{{ url_for('eval', name="bank")}}" method="POST">
+            		<form action="{{ url_for('predict', name="bank")}}" method="POST">
                 		<div>
                     			<label>Age</label>
                     			<input type="age" name="age" required/>
