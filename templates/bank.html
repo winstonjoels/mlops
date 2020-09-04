@@ -13,11 +13,7 @@
     	<body>
         	<div class="login">
             		<h1>Bank Loan Prediction: {{id}}</h1>
-	    		<form action="{{ url_for('model', name="bank")}}">
-				<button type="submit" class="btn btn-primary btn-block btn-large">New Prediction</button>
-	    		</form><br>
-            		<!-- Form to enter new data for predictions  -->
-            		<form action="{{ url_for('predict', name="bank")}}" method="POST">
+            		<form action="{{ url_for('eval', name="bank")}}" method="POST">
                 		<div>
                     			<label>Age</label>
                     			<input type="age" name="age" required/>
@@ -56,6 +52,10 @@
                     			<option value="7">unknown</option>
                 		</select><br>
                 		<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+				<form action="{{ url_for('model', name="bank")}}">
+					<button type="submit" class="btn btn-primary btn-block btn-large">Clear All</button>
+	    			</form><br>
+            			<!-- Form to enter new data for predictions  -->
            		</form><br>
 		<h3>{{pred}}</h3>
 		
