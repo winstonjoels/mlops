@@ -58,34 +58,7 @@
                 		<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
            		</form><br>
 		<h3>{{pred}}</h3>
-		<button type='submit' class='btn btn-primary btn-block btn-large'>Done</button>
-		<div>
-			<table>
-				<tr>
-					{% for col in column_names %}
-						<th>{{col}}</th>
-					{% endfor %}
-				</tr>
-				{% for row in row_data %}
-				<form action="{{ url_for('after_eval')}}" method="POST">
-				<tr>
-				{% for col, row_ in zip(column_names, row) %}
-					{% if col == link_cloumn %}
-						<td>
-							<input name={{ col }} value={{ row_ }} />
-						</td>
-						<td>
-							<button type='submit' class='btn btn-primary btn-block btn-large'>Save</button>
-						</td>
-					{% else %}
-					<td><input name={{ col }} value={{ row_ }} readonly/></td>
-					{% endif %}
-				{% endfor %}
-				</tr>
-				</form>
-				{% endfor %}
-			</table>
-		</div>
+		
         </div>
     </body>
 </html>
