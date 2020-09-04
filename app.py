@@ -102,7 +102,7 @@ def predict(name):
     df.to_csv('data/Details.csv', mode='a', header=False, index=False)
     
     file = name+".html"
-    return render_template(file, id=id, pred='{}'.format(pred))
+    return render_template(file, id=id, prediction=prediction, pred='{}'.format(pred))
 
 @app.route('/model_eval',methods=['POST'])
 def model_eval():
