@@ -9,6 +9,16 @@
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
 	</head>
+	<style>
+			table, tr, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			input[type=text], select{
+				background-color: white;
+				color: black;
+			}
+	</style>
 	<body>
         	<div class="login">
 			<h1>Death Rate Prediction: {{id}}</h1>
@@ -85,12 +95,6 @@
 		<br>
 		<br>
 		<h2>Actual Data Storage</h2>
-		<style>
-			table, tr, td {
-				border: 1px solid black;
-				border-collapse: collapse;
-			}
-		</style>
 		<table>
 			<tr>
 				<td>ID:</td><td>{{id}}</td>
