@@ -9,14 +9,23 @@
 			<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
 			<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
     	</head>
-
+	<style>
+			table, tr, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			input[type=text], select{
+				background-color: white;
+				color: black;
+			}
+	</style>
     	<body>
         	<div class="login">
             		<h1>Bank Loan Prediction: {{id}}</h1>
             		<form action="{{ url_for('predict', name="bank")}}" method="POST">
                 		<div>
                     			<label>Age</label>
-                    			<input type="age" name="age" required/>
+                    			<input type="text" name="age" required/>
                 		</div>
                 		<select name="job" required="required">
                     			<option>Job</option>
@@ -61,12 +70,6 @@
 		<br>
 		<br>
 		<h2>Actual Data Storage</h2>
-		<style>
-			table, tr, td {
-				border: 1px solid black;
-				border-collapse: collapse;
-			}
-		</style>
 		<table>
 			<tr>
 				<td>ID:</td><td>{{id}}</td>
