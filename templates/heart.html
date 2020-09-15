@@ -10,9 +10,8 @@
 		<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='./style.css') }}">
 	</head>
 	<style>
-			table, tr, td {
-				border: 1px solid black;
-				border-collapse: collapse;
+			table {
+				text-align: left;
 			}
 			input[type=text], select{
 				background-color: white;
@@ -21,10 +20,9 @@
 	</style>
 	<body>
         	<div class="login">
+				<br>
+				<br>
 			<h1>Death Rate Prediction: {{id}}</h1>
-			<form action="{{ url_for('model', name="heart")}}">
-				<button type="submit" class="btn btn-primary btn-block btn-large">New Prediction</button>
-	    		</form><br>
             		<!-- Form to enter new data for predictions  -->
             		<form action="{{ url_for('predict', name="heart")}}" method="POST">
                 		Age: <input type="text" name="age" required="required">
@@ -90,28 +88,31 @@
                     			</select><br>
                 		</div>
                 	<button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-            		</form><br>
-		<h3>{{pred}}</h3>
-		<br>
-		<br>
-		<h2>Actual Data Storage</h2>
-		<table>
-			<tr>
-				<td>ID:</td><td>{{id}}</td>
-			</tr>
-			<tr>
-				<td>Name:</td><td>heart</td>
-			</tr>
-			<tr>
-				<td>predicted value:</td><td>{{prediction}}</td>
-			</tr>
-			<tr>
-				<td>Enter Actual Value:</td><td><input type="text" name="actual" required="required"></td>
-			</tr>
-			<tr>
-				<td><button type='submit' class='btn btn-primary btn-block btn-large'>Save</button></td>
-			</tr>
-		</table>
+					</form>
+					<form action="{{ url_for('model', name="heart")}}">
+						<button type="submit" class="btn btn-primary btn-block btn-large">Clear All</button>
+					</form><br>
+					<form id="form2" action="{{ url_for('home')}}" method="POST" style="text-align: start;">
+						<table>
+							<tr>
+								<td><input type="hidden" name="ID" value={{ id }}></td>
+							</tr>
+							<tr>
+								<td><input type="hidden" name="Name" value={{ name }}></td>
+							</tr>
+							<tr>
+								<td>Predicted Output:</td>
+								<td><input type="text" name="Predicted" readonly value={{prediction}} /></td>
+							</tr>
+							<tr>
+								<td>Actual Output:</td>
+								<td><input type="text" name="Actual" placeholder="Actual Output" required="required"/></td>
+							</tr>
+							<tr>
+								<td><button type="submit" class="btn btn-primary btn-block btn-large" style="margin-left: 50%;">Save</button></td>
+							</tr>
+						</table>
+						</form>
 
 
         </div>
